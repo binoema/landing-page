@@ -45,3 +45,16 @@ Thumbs.db
 
 # Local-only profile overrides (copy from profile.private.example.ts)
 /src/app/core/data/profile.private.ts
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
