@@ -1,0 +1,25 @@
+<a
+  [routerLink]="['/skills', skill().slug]"
+  class="skill-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 p-6 no-underline"
+>
+  <span
+    class="skill-card__ripple bg-gradient-to-br {{ skill().hoverClass }}"
+    aria-hidden="true"
+  ></span>
+
+  <div class="relative z-10 flex h-full flex-col">
+    <div class="skill-card__icon mb-4" aria-hidden="true">
+      <app-fa-icon [icon]="skill().icon" [accentClass]="skill().accentClass" size="lg" />
+    </div>
+
+    <h3 class="skill-card__title mb-2 text-lg font-semibold text-white">
+      {{ skill().name }}
+    </h3>
+    <p class="skill-card__tagline mb-4 flex-1 text-sm leading-relaxed text-slate-400">
+      {{ skill().tagline }}
+    </p>
+    <span class="skill-card__cta text-sm font-medium text-violet-400">
+      View skill &rarr;
+    </span>
+  </div>
+</a>

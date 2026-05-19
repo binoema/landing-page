@@ -1,0 +1,60 @@
+.skill-card {
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.skill-card__ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 220%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.skill-card:hover,
+.skill-card:focus-visible {
+  border-color: transparent;
+  box-shadow: 0 12px 40px -12px rgb(0 0 0 / 0.45);
+}
+
+.skill-card:hover .skill-card__ripple,
+.skill-card:focus-visible .skill-card__ripple {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.skill-card__title,
+.skill-card__tagline,
+.skill-card__cta {
+  transition: color 0.35s ease;
+}
+
+.skill-card:hover .skill-card__title,
+.skill-card:focus-visible .skill-card__title,
+.skill-card:hover .skill-card__cta,
+.skill-card:focus-visible .skill-card__cta {
+  color: #fff;
+}
+
+.skill-card:hover .skill-card__tagline,
+.skill-card:focus-visible .skill-card__tagline {
+  color: rgb(255 255 255 / 0.88);
+}
+
+.skill-card:hover .skill-card__icon ::ng-deep i,
+.skill-card:focus-visible .skill-card__icon ::ng-deep i {
+  color: #fff !important;
+  background: none !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
+  -webkit-text-fill-color: #fff !important;
+}

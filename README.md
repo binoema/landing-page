@@ -2,12 +2,32 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
 
+## Private profile (local only)
+
+Personal details (name, email, social links, etc.) are kept out of the committed defaults.
+
+| File | In git? | Used when |
+|------|---------|-----------|
+| `src/app/core/data/profile.data.ts` | Yes | Production builds & public repo |
+| `src/app/core/data/profile.private.example.ts` | Yes | Template to copy |
+| `src/app/core/data/profile.private.ts` | No (gitignored) | `ng serve` / development builds |
+
+**First-time setup:**
+
+```bash
+cp src/app/core/data/profile.private.example.ts src/app/core/data/profile.private.ts
+```
+
+Edit `profile.private.ts` with your real details. `npm start` runs a script that creates this file from the example if it is missing.
+
+Production deploys (`ng build`) use only the placeholder data from `profile.data.ts`.
+
 ## Development server
 
 To start a local development server, run:
 
 ```bash
-ng serve
+npm start
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
