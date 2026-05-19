@@ -63,7 +63,7 @@ export const PROFILE_DATA: Profile = {
           description: 'Publishing typed packages with clear public APIs.',
         },
       ],
-      technologies: ['TypeScript 5.x', 'Strict mode', 'Zod / class-validator', 'OpenAPI'],
+      technologies: ['TypeScript 5.x', 'Strict mode (please use this)', 'OpenAPI'],
     },
     {
       slug: 'nodejs',
@@ -114,6 +114,23 @@ export const PROFILE_DATA: Profile = {
         },
       ],
       technologies: ['Vitest', 'Playwright', 'GitHub Actions', 'Husky', 'Conventional Commits'],
+    },
+    {
+      slug: 'virtualization',
+      name: 'Virtualization',
+      tagline: 'Running multiple environments on a single machine.',
+      description:
+        'I use Docker to run multiple environments on a single machine. This is useful for testing and development. I also use Kubernetes to run multiple services on a single machine.',
+      icon: 'fa-brands fa-docker',
+      accentClass: 'bg-gradient-to-br from-blue-500 to-indigo-600 bg-clip-text !text-transparent',
+      hoverClass: 'from-blue-500 to-indigo-600',
+      highlights: [
+        {
+          title: 'Docker',
+          description: 'Running containers on a single machine.',
+        },
+      ],
+      technologies: ['Docker', 'Kubernetes'],
     },
   ],
 };
