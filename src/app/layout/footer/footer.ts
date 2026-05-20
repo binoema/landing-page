@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
 
 import { ProfileService } from '../../core/services/profile.service';
+import { FaIcon } from '../../shared/fa-icon/fa-icon';
 
 @Component({
   selector: 'app-footer',
+  imports: [FaIcon],
   templateUrl: './footer.html',
 })
 export class Footer {
