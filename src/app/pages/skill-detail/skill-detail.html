@@ -67,10 +67,10 @@
             Explore other skills
           </h2>
           <ul class="flex flex-wrap gap-2">
-            @for (other of otherSkills(); track other.slug) {
+            @for (other of otherSkills(); track other.id) {
               <li>
                 <a
-                  [routerLink]="['/skills', other.slug]"
+                  [routerLink]="['/skills', other.id]"
                   class="inline-block rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 no-underline transition hover:border-violet-500/50 hover:text-violet-300"
                 >
                   {{ other.name }}

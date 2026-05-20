@@ -72,7 +72,7 @@
   </div>
 
   <div class="grid gap-6 sm:grid-cols-2">
-    @for (skill of skills(); track skill.slug) {
+    @for (skill of skills(); track skill.id) {
       <app-skill-card [skill]="skill" />
     }
   </div>
