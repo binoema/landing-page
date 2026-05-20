@@ -78,12 +78,7 @@
         "e2e": {
           "builder": "playwright-ng-schematics:playwright",
           "options": {
-            "devServerTarget": "landing-page:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "landing-page:serve:production"
-            }
+            "devServerTarget": "landing-page:serve:production"
           }
         }
       }
