@@ -45,7 +45,7 @@
         class="nier-avatar nier-panel relative h-48 w-48 shrink-0 self-center text-5xl lg:h-56 lg:w-56 lg:text-6xl"
         aria-hidden="true"
       >
-        <span class="absolute -top-2 -right-2 nier-label !text-[0.55rem]">Online</span>
+        <span class="absolute -top-2 -right-2 nier-label !text-[0.55rem]">{{glitch.infected() ? 'Shutting Down' : 'Online'}}</span>
         {{ profile().avatarInitials }}
       </div>
     </div>
