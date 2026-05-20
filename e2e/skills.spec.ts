@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { profile } from './fixtures/test-data';
+import { technologiesSection } from './helpers/locators';
 
 test.describe('Skill detail pages', () => {
   for (const skill of profile.skills) {
@@ -18,8 +19,9 @@ test.describe('Skill detail pages', () => {
         await expect(page.getByRole('heading', { level: 3, name: highlight.title })).toBeVisible();
       }
 
+      const technologies = technologiesSection(page);
       for (const tech of skill.technologies) {
-        await expect(page.getByText(tech, { exact: true })).toBeVisible();
+        await expect(technologies.getByText(tech, { exact: true })).toBeVisible();
       }
     });
   }

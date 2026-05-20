@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { profile } from './fixtures/test-data';
+import { heroSection } from './helpers/locators';
 
 test.describe('Home page', () => {
   test.beforeEach(async ({ page }) => {
@@ -13,7 +14,7 @@ test.describe('Home page', () => {
     await expect(page.getByText(profile.title)).toBeVisible();
     await expect(page.getByText(profile.tagline)).toBeVisible();
     await expect(page.getByText(profile.bio)).toBeVisible();
-    await expect(page.getByText(profile.avatarInitials)).toBeVisible();
+    await expect(heroSection(page).getByText(profile.avatarInitials, { exact: true })).toBeVisible();
   });
 
   test('shows skills section with a card per skill', async ({ page }) => {
