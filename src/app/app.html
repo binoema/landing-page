@@ -1,7 +1,24 @@
-<div class="flex min-h-dvh flex-col bg-slate-950 text-slate-100 antialiased">
-  <app-header />
-  <main class="flex-1">
-    <router-outlet />
-  </main>
-  <app-footer />
+<div class="nier-shell" aria-hidden="true">
+  <div class="nier-scanlines"></div>
+  <div class="nier-grid"></div>
+  <div class="nier-vignette"></div>
 </div>
+
+<div class="nier-hud nier-hud--tl" aria-hidden="true">[ SYS ]</div>
+<div class="nier-hud nier-hud--tr" aria-hidden="true">{{ glitch.infected() ? '[ VIRUS_DETECTED ]' : '[ STABLE ]' }}</div>
+<div class="nier-hud nier-hud--bl" aria-hidden="true">YoRHa // v2.1</div>
+<div class="nier-hud nier-hud--br" aria-hidden="true">ANDROID_ID</div>
+
+@if (glitch.infected()) {
+  <div class="nier-warning" role="status" aria-live="polite">
+    <span class="nier-warning__text nier-glitch" data-text="WARNING: FOREIGN CODE DETECTED">
+      WARNING: FOREIGN CODE DETECTED
+    </span>
+  </div>
+}
+
+<app-header />
+<main class="nier-main relative z-10 flex-1">
+  <router-outlet />
+</main>
+<app-footer />

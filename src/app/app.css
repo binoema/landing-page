@@ -1,3 +1,88 @@
 :host {
-  display: block;
+  --nier-shell-z: 0;
+  position: relative;
+  color: var(--nier-text);
+  background: var(--nier-bg);
+}
+
+.nier-shell {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nier-shell-z);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nier-main {
+  isolation: isolate;
+}
+
+.nier-hud {
+  position: fixed;
+  z-index: 50;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--nier-text-muted);
+  opacity: 0.55;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.nier-hud--tl {
+  top: 0.75rem;
+  left: 0.75rem;
+}
+
+.nier-hud--tr {
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+.nier-hud--bl {
+  bottom: 0.75rem;
+  left: 0.75rem;
+}
+
+.nier-hud--br {
+  bottom: 0.75rem;
+  right: 0.75rem;
+}
+
+.nier-warning {
+  position: fixed;
+  top: 3.25rem;
+  left: 50%;
+  z-index: 60;
+  transform: translateX(-50%);
+  padding: 0.35rem 1rem;
+  border: 1px solid var(--nier-virus);
+  background: rgb(20 8 8 / 0.85);
+  pointer-events: none;
+}
+
+.nier-warning__text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: #e8a0a0;
+}
+
+:host(.nier-infected) .nier-shell {
+  animation: nier-shell-flicker 2.5s steps(2) infinite;
+}
+
+:host(.nier-infected) .nier-main,
+:host(.nier-infected) app-header,
+:host(.nier-infected) app-footer {
+  animation: nier-ui-shake 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host(.nier-infected) .nier-shell,
+  :host(.nier-infected) .nier-main,
+  :host(.nier-infected) app-header,
+  :host(.nier-infected) app-footer {
+    animation: none;
+  }
 }

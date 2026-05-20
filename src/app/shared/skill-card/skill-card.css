@@ -1,60 +1,114 @@
 .skill-card {
   transition:
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
-.skill-card__ripple {
+.skill-card__corner {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 0;
-  width: 220%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
+  width: 12px;
+  height: 12px;
+  border-color: var(--nier-accent);
+  opacity: 0.4;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.skill-card__corner--tl {
+  top: 0;
+  left: 0;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.skill-card__corner--br {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.skill-card__scan {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(240 235 224 / 0.06) 50%,
+    transparent 100%
+  );
+  transform: translateY(-100%);
   opacity: 0;
-  transition:
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.35s ease;
   pointer-events: none;
 }
 
 .skill-card:hover,
 .skill-card:focus-visible {
-  border-color: transparent;
-  box-shadow: 0 12px 40px -12px rgb(0 0 0 / 0.45);
+  border-color: var(--nier-accent-bright);
+  box-shadow:
+    0 0 0 1px rgb(240 235 224 / 0.08),
+    inset 0 0 40px rgb(196 184 164 / 0.06);
+  transform: translateY(-2px);
 }
 
-.skill-card:hover .skill-card__ripple,
-.skill-card:focus-visible .skill-card__ripple {
-  transform: translate(-50%, -50%) scale(1);
+.skill-card:hover .skill-card__corner,
+.skill-card:focus-visible .skill-card__corner {
   opacity: 1;
+}
+
+.skill-card:hover .skill-card__scan,
+.skill-card:focus-visible .skill-card__scan {
+  animation: nier-scan-sweep 0.7s ease-out forwards;
 }
 
 .skill-card__title,
 .skill-card__tagline,
 .skill-card__cta {
-  transition: color 0.35s ease;
+  transition:
+    color 0.25s ease,
+    transform 0.15s ease;
 }
 
 .skill-card:hover .skill-card__title,
-.skill-card:focus-visible .skill-card__title,
+.skill-card:focus-visible .skill-card__title {
+  color: var(--nier-accent-bright);
+  text-shadow: 2px 0 var(--nier-accent), -2px 0 var(--nier-text-muted);
+}
+
 .skill-card:hover .skill-card__cta,
 .skill-card:focus-visible .skill-card__cta {
-  color: #fff;
+  color: var(--nier-accent-bright);
 }
 
 .skill-card:hover .skill-card__tagline,
 .skill-card:focus-visible .skill-card__tagline {
-  color: rgb(255 255 255 / 0.88);
+  color: var(--nier-text);
 }
 
 .skill-card:hover .skill-card__icon ::ng-deep i,
 .skill-card:focus-visible .skill-card__icon ::ng-deep i {
-  color: #fff !important;
+  color: var(--nier-accent-bright) !important;
   background: none !important;
-  background-clip: border-box !important;
-  -webkit-background-clip: border-box !important;
-  -webkit-text-fill-color: #fff !important;
+  -webkit-text-fill-color: var(--nier-accent-bright) !important;
+  filter: drop-shadow(0 0 8px rgb(196 184 164 / 0.35));
+}
+
+:host-context(.nier-infected) .skill-card:hover .skill-card__title,
+:host-context(.nier-infected) .skill-card:focus-visible .skill-card__title {
+  animation: nier-glitch-skew 0.35s steps(2) 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card:hover .skill-card__scan,
+  .skill-card:focus-visible .skill-card__scan,
+  :host-context(.nier-infected) .skill-card:hover .skill-card__title {
+    animation: none;
+  }
+
+  .skill-card:hover,
+  .skill-card:focus-visible {
+    transform: none;
+  }
 }

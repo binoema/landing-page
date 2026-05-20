@@ -1,21 +1,20 @@
-<header class="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
-  <section class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+<header class="sticky top-0 z-40 border-b border-[var(--nier-border)] bg-[var(--nier-bg-panel)]/90 backdrop-blur-sm">
+  <section class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
     <a
       routerLink="/"
       class="group flex items-center gap-3 no-underline"
       (click)="closeMenu()"
     >
-      <span
-        class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-600 text-sm font-bold text-white shadow-lg shadow-violet-500/20"
-        aria-hidden="true"
-      >
+      <span class="nier-avatar h-10 w-10 text-sm" aria-hidden="true">
         {{ profile().avatarInitials }}
       </span>
       <span class="hidden sm:block">
-        <span class="block text-sm font-semibold text-white group-hover:text-violet-200">
+        <span
+          class="block font-[family-name:var(--font-display)] text-sm font-medium tracking-widest text-[var(--nier-accent-bright)] group-hover:text-[var(--nier-accent)]"
+        >
           {{ profile().name }}
         </span>
-        <span class="block text-xs text-slate-400">Portfolio</span>
+        <span class="nier-label !text-[0.6rem] !tracking-[0.18em]">Portfolio</span>
       </span>
     </a>
 
@@ -23,48 +22,65 @@
       @for (link of navLinks(); track link.path) {
         <a
           [routerLink]="link.path"
-          routerLinkActive="bg-slate-800 text-white"
+          routerLinkActive="nier-link--active"
           [routerLinkActiveOptions]="{ exact: link.path === '/' }"
-          class="rounded-lg px-3 py-2 text-sm font-medium text-slate-300 no-underline transition hover:bg-slate-800/60 hover:text-white"
+          class="nier-link px-3 py-2"
         >
           {{ link.label }}
         </a>
       }
     </nav>
 
-    <button
-      type="button"
-      class="inline-flex items-center justify-center rounded-lg border border-slate-700 p-2 text-slate-300 md:hidden"
-      [attr.aria-expanded]="menuOpen()"
-      aria-controls="mobile-nav"
-      (click)="toggleMenu()"
-    >
-      <span class="sr-only">Toggle menu</span>
-      @if (menuOpen()) {
-        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      } @else {
-        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      }
-    </button>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        class="nier-btn nier-btn--danger hidden text-[0.65rem] sm:inline-flex"
+        [attr.aria-pressed]="glitch.infected()"
+        (click)="toggleVirus()"
+      >
+        {{ glitch.infected() ? '[ PURGE ]' : '[ INJECT ]' }}
+      </button>
+
+      <button
+        type="button"
+        class="nier-btn !p-2 md:hidden"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-nav"
+        (click)="toggleMenu()"
+      >
+        <span class="sr-only">Toggle menu</span>
+        @if (menuOpen()) {
+          <span aria-hidden="true">[ X ]</span>
+        } @else {
+          <span aria-hidden="true">[ ≡ ]</span>
+        }
+      </button>
+    </div>
   </section>
 
   @if (menuOpen()) {
     <nav
       id="mobile-nav"
-      class="border-t border-slate-800 px-4 py-3 md:hidden"
+      class="border-t border-[var(--nier-border)] px-4 py-3 md:hidden"
       aria-label="Mobile"
     >
+      <div class="mb-3">
+        <button
+          type="button"
+          class="nier-btn nier-btn--danger w-full justify-center text-[0.65rem]"
+          [attr.aria-pressed]="glitch.infected()"
+          (click)="toggleVirus()"
+        >
+          {{ glitch.infected() ? '[ PURGE VIRUS ]' : '[ INJECT VIRUS ]' }}
+        </button>
+      </div>
       <div class="flex flex-col gap-1">
         @for (link of navLinks(); track link.path) {
           <a
             [routerLink]="link.path"
-            routerLinkActive="bg-slate-800 text-white"
+            routerLinkActive="nier-link--active"
             [routerLinkActiveOptions]="{ exact: link.path === '/' }"
-            class="rounded-lg px-3 py-2 text-sm font-medium text-slate-300 no-underline"
+            class="nier-link px-3 py-2"
             (click)="closeMenu()"
           >
             {{ link.label }}

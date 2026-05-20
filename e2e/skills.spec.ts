@@ -35,7 +35,7 @@ test.describe('Skill detail pages', () => {
 
   test('back to home link returns to the home page', async ({ page }) => {
     await page.goto('/skills/angular');
-    await page.getByRole('link', { name: /Back to home/i }).click();
+    await page.getByRole('link', { name: /Return/i }).click();
     await expect(page).toHaveURL('/');
   });
 
@@ -51,8 +51,8 @@ test.describe('Skill detail pages', () => {
 
   test('unknown skill slug shows not found state', async ({ page }) => {
     await page.goto('/skills/does-not-exist');
-    await expect(page.getByRole('heading', { name: 'Skill not found' })).toBeVisible();
-    await page.getByRole('link', { name: 'Return home' }).click();
+    await expect(page.getByRole('heading', { name: 'MODULE NOT FOUND' })).toBeVisible();
+    await page.getByRole('link', { name: /Return to base/i }).click();
     await expect(page).toHaveURL('/');
   });
 });

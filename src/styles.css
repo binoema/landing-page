@@ -2,7 +2,23 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Barlow Condensed', 'Segoe UI', sans-serif;
+  --font-mono: 'Share Tech Mono', 'Consolas', monospace;
+  --font-display: 'Oswald', 'Barlow Condensed', sans-serif;
+}
+
+:root {
+  --nier-bg: #0a0a0a;
+  --nier-bg-panel: #121110;
+  --nier-bg-elevated: #1a1917;
+  --nier-text: #e8e4dc;
+  --nier-text-muted: #7a7568;
+  --nier-accent: #c4b8a4;
+  --nier-accent-bright: #f0ebe0;
+  --nier-border: #3d3a34;
+  --nier-border-bright: #6a6458;
+  --nier-virus: #8b3a3a;
+  --nier-scan: rgb(232 228 220 / 0.04);
 }
 
 html {
@@ -12,9 +28,367 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background-color: #020617;
+  background-color: var(--nier-bg);
+  color: var(--nier-text);
 }
 
 a {
   color: inherit;
+}
+
+/* —— Atmospheric overlays —— */
+.nier-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--nier-scan) 2px,
+    var(--nier-scan) 4px
+  );
+  opacity: 0.35;
+}
+
+.nier-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--nier-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nier-border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.08;
+}
+
+.nier-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgb(0 0 0 / 0.65) 100%);
+}
+
+/* —— Typography utilities —— */
+.nier-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nier-text-muted);
+}
+
+.nier-label::before {
+  content: '// ';
+  color: var(--nier-accent);
+}
+
+.nier-heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nier-accent-bright);
+}
+
+.nier-panel {
+  border: 1px solid var(--nier-border);
+  background: rgb(18 17 16 / 0.72);
+  backdrop-filter: blur(2px);
+}
+
+.nier-panel--dashed {
+  border-style: dashed;
+  border-color: var(--nier-border-bright);
+}
+
+.nier-btn {
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--nier-border-bright);
+  color: var(--nier-accent-bright);
+  background: transparent;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nier-btn:hover,
+.nier-btn:focus-visible {
+  border-color: var(--nier-accent-bright);
+  background: rgb(232 228 220 / 0.08);
+  color: var(--nier-accent-bright);
+}
+
+.nier-btn--primary {
+  border-color: var(--nier-accent);
+  background: rgb(196 184 164 / 0.12);
+}
+
+.nier-btn--primary:hover,
+.nier-btn--primary:focus-visible {
+  background: rgb(240 235 224 / 0.18);
+  box-shadow: 0 0 24px rgb(196 184 164 / 0.15);
+}
+
+.nier-btn--danger {
+  border-color: var(--nier-virus);
+  color: #e8a0a0;
+}
+
+.nier-btn--danger:hover,
+.nier-btn--danger:focus-visible {
+  background: rgb(139 58 58 / 0.2);
+}
+
+.nier-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--nier-text-muted);
+  transition: color 0.2s ease;
+}
+
+.nier-link:hover,
+.nier-link:focus-visible {
+  color: var(--nier-accent-bright);
+}
+
+.nier-link--active {
+  color: var(--nier-accent-bright);
+  border-bottom: 1px solid var(--nier-accent);
+}
+
+.nier-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--nier-border-bright);
+  background: var(--nier-bg-elevated);
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--nier-accent-bright);
+}
+
+.nier-chip {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--nier-border);
+  color: var(--nier-text-muted);
+  background: var(--nier-bg-panel);
+}
+
+.nier-icon-accent {
+  color: var(--nier-accent) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--nier-accent) !important;
+}
+
+/* —— Glitch text —— */
+.nier-glitch {
+  position: relative;
+}
+
+.nier-glitch::before,
+.nier-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+}
+
+:host(.nier-infected) .nier-glitch::before,
+.nier-infected .nier-glitch::before {
+  left: 2px;
+  color: #c4b8a4;
+  animation: nier-glitch-1 2s infinite linear alternate-reverse;
+}
+
+:host(.nier-infected) .nier-glitch::after,
+.nier-infected .nier-glitch::after {
+  left: -2px;
+  color: #6a5a4a;
+  animation: nier-glitch-2 3s infinite linear alternate-reverse;
+}
+
+:host(.nier-infected) .nier-glitch,
+.nier-infected .nier-glitch {
+  color: var(--nier-bg);
+  animation: nier-glitch-skew 2.5s infinite steps(1);
+}
+
+/* Subtle ambient glitch on hero title */
+.nier-glitch--subtle:hover {
+  animation: nier-glitch-skew 0.4s steps(2) 1;
+}
+
+/* —— Keyframes —— */
+@keyframes nier-glitch-1 {
+  0% {
+    clip-path: inset(20% 0 60% 0);
+  }
+  20% {
+    clip-path: inset(60% 0 10% 0);
+  }
+  40% {
+    clip-path: inset(40% 0 30% 0);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+  }
+  80% {
+    clip-path: inset(10% 0 70% 0);
+  }
+  100% {
+    clip-path: inset(30% 0 50% 0);
+  }
+}
+
+@keyframes nier-glitch-2 {
+  0% {
+    clip-path: inset(10% 0 80% 0);
+  }
+  25% {
+    clip-path: inset(70% 0 15% 0);
+  }
+  50% {
+    clip-path: inset(25% 0 55% 0);
+  }
+  75% {
+    clip-path: inset(55% 0 25% 0);
+  }
+  100% {
+    clip-path: inset(5% 0 85% 0);
+  }
+}
+
+@keyframes nier-glitch-skew {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    transform: translate(2px, -1px);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes nier-shell-flicker {
+  0%,
+  95% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.85;
+  }
+  97% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes nier-ui-shake {
+  0%,
+  30% {
+    transform: translate(-5px, 0);
+    filter: hue-rotate(10deg);
+  }
+  33% {
+    transform: translate(3px, 1px);
+  }
+  35% {
+    transform: translate(-5px, -1px);
+    filter: contrast(1.2);
+  }
+  90%,
+  100% {
+    transform: translate(0);
+    filter: none;
+  }
+  91% {
+    transform: translate(-15px, 0);
+    filter: hue-rotate(10deg);
+  }
+  93% {
+    transform: translate(3px, 1px);
+  }
+  95% {
+    transform: translate(-5px, -1px);
+    filter: contrast(1.2);
+  }
+}
+
+@keyframes nier-scan-sweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nier-glitch::before,
+  .nier-glitch::after,
+  .nier-glitch,
+  .nier-glitch--subtle:hover {
+    animation: none !important;
+  }
+}
+
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .07em solid var(--nier-accent-bright); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+    typing 2.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--nier-accent-bright); }
 }

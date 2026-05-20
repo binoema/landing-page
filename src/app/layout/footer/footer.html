@@ -1,8 +1,12 @@
-<footer class="border-t border-slate-800 bg-slate-950">
+<footer class="relative z-10 border-t border-[var(--nier-border)] bg-[var(--nier-bg-panel)]">
   <div
-    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-center text-sm text-slate-500 sm:flex-row sm:px-6 sm:text-left lg:px-8"
+    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 text-center text-sm sm:flex-row sm:px-6 sm:text-left lg:px-8"
   >
-    <p>&copy; {{ year }} {{ profile().name }}. Built with Angular 21 and an artificial <app-fa-icon icon="fa-solid fa-heart" size="sm" accentClass="text-red-500" />.</p>
-    <p class="text-slate-600">{{ profile().location }}</p>
+    <p class="font-[family-name:var(--font-mono)] text-xs tracking-wider text-[var(--nier-text-muted)]">
+      &copy; {{ year }} {{ profile().name }} //
+      <span class="text-[var(--nier-text-muted)]">Built with Angular 21 and an artificial</span>
+      <app-fa-icon icon="fa-solid fa-heart" size="sm" accentClass="nier-icon-accent" />
+    </p>
+    <p class="nier-label !text-[0.6rem]">{{ profile().location }}</p>
   </div>
 </footer>

@@ -26,13 +26,13 @@ test.describe('Home page', () => {
   });
 
   test('Explore Angular navigates to the Angular skill page', async ({ page }) => {
-    await page.getByRole('link', { name: 'Explore Angular' }).click();
+    await page.getByRole('link', { name: /Access: Angular/i }).click();
     await expect(page).toHaveURL(/\/skills\/angular$/);
     await expect(page.getByRole('heading', { level: 1, name: 'Angular' })).toBeVisible();
   });
 
   test('Get in touch opens a mailto link', async ({ page }) => {
-    const contact = page.getByRole('link', { name: 'Get in touch' });
+    const contact = page.getByRole('link', { name: /Transmit/i });
     await expect(contact).toHaveAttribute('href', `mailto:${profile.email}`);
   });
 

@@ -6,13 +6,13 @@ test.describe('404 page', () => {
   test('unknown route shows not found content', async ({ page }) => {
     await page.goto('/this-route-does-not-exist');
 
-    await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
-    await expect(page.getByText('The page you are looking for does not exist.')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'ROUTE CORRUPTED' })).toBeVisible();
+    await expect(page.getByText(/Target coordinates do not map/i)).toBeVisible();
   });
 
   test('Go home link navigates back to the home page', async ({ page }) => {
     await page.goto('/missing-page');
-    await page.getByRole('link', { name: 'Go home' }).click();
+    await page.getByRole('link', { name: /Reboot to home/i }).click();
 
     await expect(page).toHaveURL('/');
     await expect(page.getByRole('heading', { name: 'Skills in action' })).toBeVisible();

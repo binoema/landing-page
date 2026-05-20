@@ -12,7 +12,8 @@ export default defineConfig({
   workers: process.env['CI'] ? 1 : undefined,
   reporter: process.env['CI'] ? [['github'], ['html', { open: 'never' }]] : 'html',
   use: {
-    baseURL: process.env['PLAYWRIGHT_TEST_BASE_URL'] ?? 'http://localhost:4200',
+    /* Port 4201 avoids clashing with `ng serve` (4200) and private profile data */
+    baseURL: process.env['PLAYWRIGHT_TEST_BASE_URL'] ?? 'http://localhost:4201',
     trace: 'on-first-retry',
   },
   projects: [
@@ -22,9 +23,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npx ng serve --configuration production --port 4200',
-    url: 'http://localhost:4200',
-    reuseExistingServer: !process.env['CI'],
-    timeout: 120_000,
+    command: 'npx ng build --configuration production && npx ng serve --configuration production --port 4201',
+    url: 'http://localhost:4201',
+    reuseExistingServer: false,
+    timeout: 180_000,
   },
 });
