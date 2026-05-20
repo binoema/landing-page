@@ -6,7 +6,7 @@ import { technologiesSection } from './helpers/locators';
 test.describe('Skill detail pages', () => {
   for (const skill of profile.skills) {
     test(`${skill.name} page shows content sections`, async ({ page }) => {
-      await page.goto(`/skills/${skill.slug}`);
+      await page.goto(`/skills/${skill.id}`);
 
       await expect(page.getByRole('heading', { level: 1, name: skill.name })).toBeVisible();
       await expect(page.getByText(skill.tagline)).toBeVisible();

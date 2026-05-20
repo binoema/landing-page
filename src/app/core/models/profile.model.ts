@@ -11,7 +11,7 @@ export interface SkillHighlight {
 }
 
 export interface Skill {
-  slug: string;
+  id: string;
   name: string;
   tagline: string;
   description: string;

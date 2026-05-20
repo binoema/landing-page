@@ -26,6 +26,6 @@ export class SkillDetail {
   });
 
   protected readonly otherSkills = computed(() =>
-    this.profileService.skills().filter((s) => s.slug !== this.slug()),
+    this.profileService.skills().filter((s) => s.id !== this.slug()),
   );
 }

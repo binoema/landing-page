@@ -21,7 +21,7 @@ test.describe('Header navigation', () => {
     await expect(page).toHaveURL('/');
 
     for (const slug of skillSlugs) {
-      const skill = profile.skills.find((s) => s.slug === slug)!;
+      const skill = profile.skills.find((s) => s.id === slug)!;
       await mainNav.getByRole('link', { name: skill.name }).click();
       await expect(page).toHaveURL(new RegExp(`/skills/${slug}$`));
       await expect(page.getByRole('heading', { level: 1, name: skill.name })).toBeVisible();

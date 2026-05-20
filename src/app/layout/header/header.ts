@@ -19,7 +19,7 @@ export class Header {
     { label: 'Home', path: '/' },
     ...this.navSkills().map((skill) => ({
       label: skill.name,
-      path: `/skills/${skill.slug}`,
+      path: `/skills/${skill.id}`,
     })),
   ]);
 

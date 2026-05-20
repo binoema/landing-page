@@ -9,10 +9,10 @@ export class ProfileService {
 
   readonly profile = this.profileState.asReadonly();
   readonly skills = computed(() => this.profile().skills);
-  readonly skillSlugs = computed(() => this.skills().map((s) => s.slug));
+  readonly skillSlugs = computed(() => this.skills().map((s) => s.id));
 
   getSkillBySlug(slug: string): Skill | undefined {
-    return this.skills().find((s) => s.slug === slug);
+    return this.skills().find((s) => s.id === slug);
   }
 
   updateProfile(partial: Partial<Profile>): void {

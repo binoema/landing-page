@@ -16,7 +16,7 @@ export const PROFILE_DATA: Profile = {
   ],
   skills: [
     {
-      slug: 'angular',
+      id: 'angular',
       name: 'Angular',
       tagline: 'Enterprise UI with signals, standalone components, and modern control flow.',
       description:
@@ -41,7 +41,7 @@ export const PROFILE_DATA: Profile = {
       technologies: ['Angular 21', 'Signals', 'RxJS', 'NgRx (when needed)', 'Tailwind CSS'],
     },
     {
-      slug: 'typescript',
+      id: 'typescript',
       name: 'TypeScript',
       tagline: 'Type-safe APIs from browser to server.',
       description:
@@ -66,7 +66,7 @@ export const PROFILE_DATA: Profile = {
       technologies: ['TypeScript 5.x', 'Strict mode (please use this)', 'OpenAPI'],
     },
     {
-      slug: 'nodejs',
+      id: 'nodejs',
       name: 'Node.js',
       tagline: 'APIs, tooling, and server-driven workflows.',
       description:
@@ -91,7 +91,7 @@ export const PROFILE_DATA: Profile = {
       technologies: ['Node 22+', 'NestJS', 'PostgreSQL', 'Docker', 'JWT / OAuth2'],
     },
     {
-      slug: 'testing',
+      id: 'testing',
       name: 'Testing & DX',
       tagline: 'Confidence through automation and great developer experience.',
       description:
@@ -116,7 +116,7 @@ export const PROFILE_DATA: Profile = {
       technologies: ['Vitest', 'Playwright', 'GitHub Actions', 'Husky', 'Conventional Commits'],
     },
     {
-      slug: 'virtualization',
+      id: 'virtualization',
       name: 'Virtualization',
       tagline: 'Running multiple environments on a single machine.',
       description:
